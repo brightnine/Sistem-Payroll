@@ -1,0 +1,27 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #eaeaea !important;
+}
+
+#side {
+  background-color: rgba(14, 58, 139, 0.817);
+  height: 2000px;
+}
+
+#side .row {
+  padding: 30px 0px;
+}
+#side .row:hover {
+  background-color: rgba(11, 50, 121, 0.817);
+}
+#side .row a {
+  text-decoration: none;
+  color: white;
+}
+
+#header {
+  background-color: rgb(205, 205, 205);
+  width: 90%;
+  height: 150px !important;
+}
