@@ -65,7 +65,7 @@ $akun = mysqli_fetch_assoc($cekAkun);
                 <div class="row mt-3">
                     <div class="container rounded-4 " id="header">
                         <div class="row mt-3">
-                            <div class="col-9">
+                            <div class="col-sm-9">
                                 <?php 
                                     date_default_timezone_set("Asia/Jakarta"); 
                                     $jam = date("H");
@@ -79,16 +79,16 @@ $akun = mysqli_fetch_assoc($cekAkun);
                                         $jam = "Night";
                                     }
                                 ?>
-                                <h1 class="mt-3">Good <?= $jam ?></h1>
+                                <h1 class="mt-4 ms-3">Good <?= $jam ?></h1>
                             </div>
-                            <div class="col-3 ">
+                            <div class="col-sm-3 ">
                                 <div class="row justify-content-center">
                                     <div class="col-4">
                                         <img src="../img/fotoKosong.png" width="65px" class="rounded-circle mt-3 me-3">
                                     </div>
                                     <div class="col-6 text-center">
                                         <p><?= $akun['username']; ?></p>
-                                        <p><?= $akun['jabatan']; ?></p>
+                                        <p class="fw-bold"><?= $akun['jabatan']; ?></p>
                                         <a href="../logout.php" class="text-dark"
                                             onclick="return confirm('Apakah anda ingin logout')">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -107,14 +107,14 @@ $akun = mysqli_fetch_assoc($cekAkun);
                 <div class="row mt-5">
                     <div class="container" style="width: 90%; margin: auto;">
                         <div class="row justify-content-between">
-                            <div class="col-7">
+                            <div class="col-sm-7">
                                 <div class="row justify-content-between">
-                                    <div class="col-5 rounded-3 text-center p-5"
+                                    <div class="col-sm-5 rounded-3 text-center p-5 mb-3"
                                         style="background-color: rgb(205, 205, 205);">
                                         <h4>Rp. 200 Juta</h4>
                                         <p>Payroll</p>
                                     </div>
-                                    <div class="col-5 rounded-3 text-center p-5"
+                                    <div class="col-sm-5 rounded-3 text-center p-5 mb-3"
                                         style="background-color: rgb(205, 205, 205);">
                                         <?php $jumlahData = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user")); ?>
                                         <h4>
@@ -123,7 +123,7 @@ $akun = mysqli_fetch_assoc($cekAkun);
                                         <p>Employee</p>
                                     </div>
                                 </div>
-                                <div class="row mt-5 rounded-3 p-3" style="background-color: rgb(205, 205, 205);">
+                                <div class="row mt-5 rounded-3 p-3 mb-5" style="background-color: rgb(205, 205, 205);">
                                     <p>Karyawan Terbaik bulan Oktober</p>
                                     <table class="table">
                                         <thead>
@@ -136,13 +136,13 @@ $akun = mysqli_fetch_assoc($cekAkun);
                                         </thead>
                                         <tbody>
                                             <?php $i = 1;
-                                            $cekAntrian = mysqli_query($conn, "SELECT * FROM user");
-                                            $rows = [];
-                                            while($row = mysqli_fetch_assoc($cekAntrian)){
-                                                $rows[] = $row;
+                                            $cekKaryawan = mysqli_query($conn, "SELECT * FROM user");
+                                            $baris = [];
+                                            while($result = mysqli_fetch_assoc($cekKaryawan)){
+                                                $baris[] = $result;
                                             }
-                                            $cekSemuaAntrian = $rows;
-                                            foreach($cekSemuaAntrian as $user):
+                                            $cekSemuaKaryawan = $baris;
+                                            foreach($cekSemuaKaryawan as $user):
                                             ?>
                                             <tr>
                                                 <th scope="row"><?= $i++; ?></th>
@@ -159,7 +159,8 @@ $akun = mysqli_fetch_assoc($cekAkun);
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-4 rounded-3" style="background-color: rgb(205, 205, 205);">
+                            <div class="col-sm-4 rounded-3 mb-5" style="background-color: rgb(205, 205, 205);">
+                                <h4 class="text-center mt-3 mb-3">Antrian Verifikasi Akun</h4>
                                 <table class="table text-center">
                                     <thead>
                                         <tr>
