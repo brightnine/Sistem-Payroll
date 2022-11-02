@@ -45,7 +45,7 @@ $user = mysqli_fetch_assoc($ambilData);
                             <option value="karyawan">Karyawan</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-success" name="verifikasi">Verifikasi</button>
+                    <button type="submit" class="btn btn-primary" name="verifikasi">Verifikasi</button>
                 </form>
             </div>
         </div>

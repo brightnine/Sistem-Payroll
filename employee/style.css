@@ -6,7 +6,7 @@ body {
 
 #side {
   background-color: rgba(14, 58, 139, 0.817);
-  height: 2000px;
+  height: 500px !important;
 }
 
 #side .row {

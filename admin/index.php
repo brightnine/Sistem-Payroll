@@ -64,8 +64,24 @@ $akun = mysqli_fetch_assoc($cekAkun);
             <div class="col-9">
                 <div class="row mt-3">
                     <div class="container rounded-4 " id="header">
-                        <div class="row justify-content-end mt-3">
-                            <div class="col-3">
+                        <div class="row mt-3">
+                            <div class="col-9">
+                                <?php 
+                                    date_default_timezone_set("Asia/Jakarta"); 
+                                    $jam = date("H");
+                                    if(date("H")<=12){
+                                        $jam = "Morning";
+                                    }else if(date("H")>12 && date("H") < 15){
+                                        $jam = "Day";
+                                    }else if(date("H")>15 && date("H")<17){
+                                        $jam = "Afternoon";
+                                    }else {
+                                        $jam = "Night";
+                                    }
+                                ?>
+                                <h1 class="mt-3">Good <?= $jam ?></h1>
+                            </div>
+                            <div class="col-3 ">
                                 <div class="row justify-content-center">
                                     <div class="col-4">
                                         <img src="../img/fotoKosong.png" width="65px" class="rounded-circle mt-3 me-3">
@@ -87,35 +103,93 @@ $akun = mysqli_fetch_assoc($cekAkun);
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-6">
-                        <h2>Antrian Verifikasi Akun</h2>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1;foreach($cekSemuaAntrian as $user): ?>
-                                <tr>
-                                    <td><?= $i++; ?></td>
-                                    <td><?= $user['username']; ?></td>
-                                    <td><?= $user['email']; ?></td>
-                                    <td>
-                                        <a href="verifikasi/verifikasiAkun.php?user=<?php echo $user['username']; ?>">
-                                            <button class="btn btn-success">
-                                                Verified
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div> -->
+                </div>
+                <div class="row mt-5">
+                    <div class="container" style="width: 90%; margin: auto;">
+                        <div class="row justify-content-between">
+                            <div class="col-7">
+                                <div class="row justify-content-between">
+                                    <div class="col-5 rounded-3 text-center p-5"
+                                        style="background-color: rgb(205, 205, 205);">
+                                        <h4>Rp. 200 Juta</h4>
+                                        <p>Payroll</p>
+                                    </div>
+                                    <div class="col-5 rounded-3 text-center p-5"
+                                        style="background-color: rgb(205, 205, 205);">
+                                        <?php $jumlahData = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user")); ?>
+                                        <h4>
+                                            <?= $jumlahData ?>
+                                        </h4>
+                                        <p>Employee</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-5 rounded-3 p-3" style="background-color: rgb(205, 205, 205);">
+                                    <p>Karyawan Terbaik bulan Oktober</p>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Jabatan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1;
+                                            $cekAntrian = mysqli_query($conn, "SELECT * FROM user");
+                                            $rows = [];
+                                            while($row = mysqli_fetch_assoc($cekAntrian)){
+                                                $rows[] = $row;
+                                            }
+                                            $cekSemuaAntrian = $rows;
+                                            foreach($cekSemuaAntrian as $user):
+                                            ?>
+                                            <tr>
+                                                <th scope="row"><?= $i++; ?></th>
+                                                <td>
+                                                    <span><img src="../img/fotoKosong.png" alt="" width="20px"
+                                                            class="rounded-circle"></span>
+                                                    <span><?= $user['username']; ?></span>
+                                                </td>
+                                                <td><?= $user['email']; ?></td>
+                                                <td><?= $user['jabatan']; ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-4 rounded-3" style="background-color: rgb(205, 205, 205);">
+                                <table class="table text-center">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                            $i = 1;
+                                            foreach($cekSemuaAntrian as $user):
+                                        ?>
+                                        <tr>
+                                            <th scope="row"><?= $i++; ?></th>
+                                            <td><?= $user['username']; ?></td>
+                                            <td>
+                                                <a href="verifikasi/verifikasiAkun.php?user=<?= $user['username'] ?>">
+                                                    <button class="btn btn-primary">
+                                                        Verifikasi
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
